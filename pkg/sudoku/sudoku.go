@@ -110,6 +110,25 @@ func (s Sudoku) Display() {
 	}
 }
 
+// returns 1line string presentation of Sudoku board
+func (s Sudoku) String() string {
+	var line string
+
+	for _, row := range ROWS {
+		for _, col := range COLUMNS {
+			coord := string(row) + string(col)
+
+			if len(s.State[coord]) == 1 {
+				line += s.State[coord]
+			} else {
+				line += "0"
+			}
+		}
+	}
+
+	return line
+}
+
 // -- Constraint Propagation
 // eliminate all other values (except digit) from state[coord] and propagate
 func (s *Sudoku) assign(coord string, digit rune) error {
