@@ -76,6 +76,7 @@ func (s *Sudoku) IsSolved() bool {
 
 	return true
 }
+
 func (s Sudoku) Display() {
 	width := 1
 	for _, values := range s.State {
@@ -201,31 +202,6 @@ func filterRune(txt string, needle rune) string {
 			return r
 		}
 	}, txt)
-}
-
-// TODO: check if used
-// converts string of grid into map[square] = "string_of_possible_values"
-func parseGrid(grid string) (map[string]string, error) {
-	if len(grid) != SQUARE_COUNT {
-		return nil, errors.New("Sudoku grid must have 81 characters")
-	}
-
-	state := make(map[string]string)
-	squares := crossProduct(ROWS, COLUMNS)
-
-	for i, c := range grid {
-		current_square := squares[i]
-
-		if strings.Contains(DIGITS, string(c)) {
-			state[current_square] = string(c)
-		} else {
-			state[current_square] = DIGITS
-		}
-
-		// TODO: the assign function is missing
-	}
-
-	return state, nil
 }
 
 /// cross products of 2 strings
